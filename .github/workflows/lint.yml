@@ -13,7 +13,7 @@ jobs:
       - name: Install Node.js
         env:
           NODE_VERSION: 14.17.0
-        run: export NVM_DIR="$HOME/.nvmrc" && . "$NVM_DIR/nvm.sh" --no-use && nvm install
+        run: export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use && nvm install
       - name: Install dependencies
         run: npm install
       - name: Lint source code with prettier
