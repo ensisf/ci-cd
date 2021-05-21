@@ -17,5 +17,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Lint source code with prettier
-        run: npm run lint
+        run: npm run lint:prettier
+      - name: Lint source code with eslint
+        run: npm run lint:ts
         # continue-on-error: true
