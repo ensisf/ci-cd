@@ -13,9 +13,7 @@ jobs:
       - name: Install NVM
         run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
       - name: Install Node.js
-        # env:
-        #   NODE_VERSION: 14.17.0
-        run: echo "lts/*" > .nvmrc # && export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use && nvm install
+        run: echo "lts/*" > .nvmrc
       - name: Install dependencies
         run: npm install
       - name: Lint source code with prettier
