@@ -2,7 +2,7 @@ name: Test
 
 on:
   pull_request:
-    branches: ['master']
+    branches: ["master"]
 
 jobs:
   prettier:
@@ -19,6 +19,6 @@ jobs:
           NODE_VERSION: 14.17.0
         run: nvm install
       - name: Install dependencies
-          run: npm ci
+        run: npm ci
       - name: Lint source code with linters
-          run: npm run lint
+        run: npm run lint
