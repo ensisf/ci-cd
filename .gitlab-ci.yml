@@ -10,6 +10,26 @@ eslint:
     - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use
     - nvm install $NODE_VERSION
     - npm install
-    - npm run lint:prettier
     - npm run lint:eslint
+
+prettier:
+  stage: linting
+  variables:
+    NODE_VERSION: 14.17.0
+  script:
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+    - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use
+    - nvm install $NODE_VERSION
+    - npm install
+    - npm run lint:prettier
+
+typechecking:
+  stage: linting
+  variables:
+    NODE_VERSION: 14.17.0
+  script:
+    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+    - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use
+    - nvm install $NODE_VERSION
+    - npm install
     - npm run lint:ts
