@@ -15,7 +15,7 @@ jobs:
       - name: Install Node.js
         run: echo "lts/*" > .nvmrc
       - name: Install dependencies
-        run: npm lint
+        run: npm ci
       - name: Lint source code with prettier
         continue-on-error: true
         run: npm run lint:prettier
