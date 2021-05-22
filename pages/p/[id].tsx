@@ -1,8 +1,8 @@
-import Layout from "../../components/Layout";
-import Router, { useRouter } from "next/router";
-import { withApollo } from "../../apollo/client";
-import gql from "graphql-tag";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import Layout from '../../components/Layout';
+import Router, { useRouter } from 'next/router';
+import { withApollo } from '../../apollo/client';
+import gql from 'graphql-tag';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const PostQuery = gql`
   query PostQuery($postId: String!) {
@@ -59,11 +59,11 @@ function Post() {
   const [deletePost] = useMutation(DeleteMutation);
 
   if (loading) {
-    console.log("loading");
+    console.log('loading');
     return <div>Loading ...</div>;
   }
   if (error) {
-    console.log("error");
+    console.log('error');
     return <div>Error: {error.message}</div>;
   }
 
@@ -76,7 +76,7 @@ function Post() {
 
   const authorName = data.post.author
     ? data.post.author.name
-    : "Unknown author";
+    : 'Unknown author';
   return (
     <Layout>
       <div>
@@ -85,26 +85,26 @@ function Post() {
         <p>{data.post.content}</p>
         {!data.post.published && (
           <button
-            onClick={async (e) => {
+            onClick={async () => {
               await publish({
                 variables: {
                   postId,
                 },
               });
-              Router.push("/");
+              Router.push('/');
             }}
           >
             Publish
           </button>
         )}
         <button
-          onClick={async (e) => {
+          onClick={async () => {
             await deletePost({
               variables: {
                 postId,
               },
             });
-            Router.push("/");
+            Router.push('/');
           }}
         >
           Delete

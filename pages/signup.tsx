@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import Layout from "../components/Layout";
-import Router from "next/router";
-import { withApollo } from "../apollo/client";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/react-hooks";
+import React, { useState } from 'react';
+import Layout from '../components/Layout';
+import Router from 'next/router';
+import { withApollo } from '../apollo/client';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 
 const SignupMutation = gql`
   mutation SignupMutation($name: String, $email: String!) {
@@ -16,8 +16,8 @@ const SignupMutation = gql`
 `;
 
 function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   const [signup] = useMutation(SignupMutation);
 
@@ -27,7 +27,7 @@ function Signup() {
         <form
           onSubmit={async (e) => {
             e.preventDefault();
-            console.log("submit", name, email);
+            console.log('submit', name, email);
 
             await signup({
               variables: {
@@ -35,7 +35,7 @@ function Signup() {
                 email: email,
               },
             });
-            Router.push("/");
+            Router.push('/');
           }}
         >
           <h1>Signup user</h1>
@@ -53,7 +53,7 @@ function Signup() {
             value={email}
           />
           <input disabled={!name || !email} type="submit" value="Signup" />
-          <a className="back" href="#" onClick={() => Router.push("/")}>
+          <a className="back" href="#" onClick={() => Router.push('/')}>
             or Cancel
           </a>
         </form>
@@ -66,7 +66,7 @@ function Signup() {
           justify-content: center;
         }
 
-        input[type="text"] {
+        input[type='text'] {
           width: 100%;
           padding: 0.5rem;
           margin: 0.5rem 0;
@@ -74,7 +74,7 @@ function Signup() {
           border: 0.125rem solid rgba(0, 0, 0, 0.2);
         }
 
-        input[type="submit"] {
+        input[type='submit'] {
           background: #ececec;
           border: 0;
           padding: 1rem 2rem;
