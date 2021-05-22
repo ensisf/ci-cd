@@ -15,7 +15,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
   },
-  // globals: {
-  //   globalThis: false,
-  // },
+  globals: {
+    globalThis: false,
+  },
 };
