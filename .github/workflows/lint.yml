@@ -1,12 +1,12 @@
-name: Test
+name: Lint source code
 
 on:
   pull_request:
     branches: [master, main]
 
 jobs:
-  prettier:
-    name: Prettier
+  linters:
+    name: Linters
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,7 +15,9 @@ jobs:
       - name: Install Node.js
         run: echo "lts/*" > .nvmrc
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Lint source code with prettier
-        run: npm run lint
-        # continue-on-error: true
+        continue-on-error: true
+        run: npm run lint:prettier
+      - name: Lint source code with eslint
+        run: npm run lint:eslint
