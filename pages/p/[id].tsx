@@ -85,7 +85,7 @@ function Post() {
         <p>{data.post.content}</p>
         {!data.post.published && (
           <button
-            onClick={async (e) => {
+            onClick={async () => {
               await publish({
                 variables: {
                   postId,
@@ -98,7 +98,7 @@ function Post() {
           </button>
         )}
         <button
-          onClick={async (e) => {
+          onClick={async () => {
             await deletePost({
               variables: {
                 postId,
