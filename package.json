@@ -10,7 +10,7 @@
     "generate:prisma": "prisma generate",
     "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api",
     "lint:prettier": "prettier --check .",
-    "lint:ts": "eslint .",
+    "lint:eslint": "eslint .",
     "lint": "npm run lint:ts & npm run lint:prettier"
   },
   "keywords": [],
