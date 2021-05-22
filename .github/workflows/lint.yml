@@ -7,17 +7,44 @@ on:
     branches: ['*']
 
 jobs:
-  linters:
-    name: Linters
+  eslint:
+    name: Eslint
     runs-on: ubuntu-latest
+    container:
+      image: node:14.17.0-alpine
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install NVM
-        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
-      - name: Install Node.js
-        run: echo "lts/*" > .nvmrc
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint source code with eslint
+        run: npm run lint:eslint
+
+  typechecking:
+    name: Typechecking
+    runs-on: ubuntu-latest
+    container:
+      image: node:14.17.0-alpine
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run types checking
+        run: npm run lint:ts
+
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+    container:
+      image: node:14.17.0-alpine
+
+    steps:
+      - uses: actions/checkout@v2
 
       - name: Install dependencies
         run: npm ci
@@ -25,9 +52,3 @@ jobs:
       - name: Lint source code with prettier
         continue-on-error: true
         run: npm run lint:prettier
-
-      - name: Lint source code with eslint
-        run: npm run lint:eslint
-
-      - name: Run types checking
-        run: npm run lint:ts
