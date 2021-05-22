@@ -10,4 +10,6 @@ eslint:
     - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use
     - nvm install $NODE_VERSION
     - npm install
-    - npm run lint
+    - npm run lint:prettier
+    - npm run lint:eslint
+    - npm run lint:ts
