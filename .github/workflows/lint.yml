@@ -7,8 +7,23 @@ on:
     branches: ['*']
 
 jobs:
+  build: # job for caching npm
+    name: Build cache
+    runs-on: ubuntu-latest
+    container:
+      image: node:14.17.0-alpine
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+
   eslint:
     name: Eslint
+    needs: build
     runs-on: ubuntu-latest
     container:
       image: node:14.17.0-alpine
@@ -30,12 +45,19 @@ jobs:
 
   typechecking:
     name: Typechecking
+    needs: build
     runs-on: ubuntu-latest
     container:
       image: node:14.17.0-alpine
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
 
       - name: Install dependencies
         run: npm ci
@@ -45,12 +67,19 @@ jobs:
 
   prettier:
     name: Prettier
+    needs: build
     runs-on: ubuntu-latest
     container:
       image: node:14.17.0-alpine
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
 
       - name: Install dependencies
         run: npm ci --ignore-scripts
