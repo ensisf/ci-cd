@@ -21,3 +21,5 @@ jobs:
         run: npm run lint:prettier
       - name: Lint source code with eslint
         run: npm run lint:eslint
+      - name: Run types checking
+        run: npm run lint:ts

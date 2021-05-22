@@ -52,7 +52,7 @@ const Blog = () => {
       <div className="page">
         <h1>My Blog</h1>
         <main>
-          {data.feed.map((post) => (
+          {data.feed.map((post: { name: string }) => (
             <div key={post.id} className="post">
               <Post post={post} />
             </div>
