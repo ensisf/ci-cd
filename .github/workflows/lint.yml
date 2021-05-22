@@ -15,9 +15,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Lint source code with eslint
         run: npm run lint:eslint
@@ -32,7 +38,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Run types checking
         run: npm run lint:ts
@@ -47,7 +53,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Lint source code with prettier
         continue-on-error: true
