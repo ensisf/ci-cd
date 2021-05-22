@@ -1,0 +1,23 @@
+stages:
+  - linting
+
+eslint:
+  stage: linting
+  image: node:14.17.0-alpine
+  script:
+    - npm ci
+    - npm run lint:eslint
+
+prettier:
+  stage: linting
+  image: node:14.17.0-alpine
+  script:
+    - npm ci
+    - npm run lint:prettier
+
+typechecking:
+  stage: linting
+  image: node:14.17.0-alpine
+  script:
+    - npm ci
+    - npm run lint:ts
