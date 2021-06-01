@@ -25,7 +25,7 @@ jobs:
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
       - name: Copy files to the server
         run: |
-          echo $SSH_HOST \
+          ssh $SSH_USER@$SSH_HOST \
           mkdir yay-test-new
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
