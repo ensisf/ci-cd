@@ -27,5 +27,5 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
       - name: Copy files to the server
         run: |
-          ssh deploy@206.189.3.157 \
-          mkdir yay-test
+          ssh $SSH_USER@$SSH_HOST \
+          mkdir yay-test-new
