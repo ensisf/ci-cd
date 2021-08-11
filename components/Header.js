@@ -13,7 +13,7 @@ const Header = () => {
       <div className="left">
         <Link href="/">
           <a className="bold" data-active={isActive('/')}>
-            Blog
+            Blog test 
           </a>
         </Link>
         <Link href="/drafts">
